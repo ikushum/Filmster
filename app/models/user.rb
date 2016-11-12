@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
          
   validates :username, presence: true       
   
+  mount_uploader :avatar, AvatarUploader
+  
 end

@@ -33,10 +33,19 @@ a{
     cursor:pointer;
 }
 
+a:hover{
+    text-decoration:none;
+}
+
 .navbar-brand{
-    font-size:20px;
+    font-size:25px;
 }
 
 .nav_links{
     color:white;
+    font-size:15px;
+}
+
+.nav_links:hover{
+    color:grey;
 }
