@@ -21,31 +21,35 @@ body{
     background-color:white;
     margin:0;
     padding:0;
+    font-family:helvetica;
 }
 
 #nav{
     background-color:black;
     color:white;
     width:100%;
+    margin-top:0px;
+    padding:5px 15px;
 }
 
 a{
     cursor:pointer;
 }
 
-a:hover{
-    text-decoration:none;
-}
-
-.navbar-brand{
+.logo{
+    font-family: 'Shrikhand', cursive;
     font-size:25px;
+    color:white;
 }
 
 .nav_links{
     color:white;
     font-size:15px;
+    font-family:helvetica;
+    line-height:35px;
 }
 
-.nav_links:hover{
-    color:grey;
+a:hover{
+    text-decoration:none;
+    color:#cecece;
 }
