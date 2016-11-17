@@ -10,4 +10,12 @@ class User < ActiveRecord::Base
   
   has_many :reviews
   
+  def reviewed?(movie)
+      reviewed=false
+      movie.reviews.each do |review|
+        reviewed=true if username==review.user.username
+      end 
+      return reviewed
+  end 
+
 end

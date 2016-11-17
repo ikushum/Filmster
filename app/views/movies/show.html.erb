@@ -1,0 +1,32 @@
+<img style="width:100px" src="<%= @movie.poster %>" == "N/A" ? "http://www.reelviews.net/resources/img/default_poster.jpg" : data["Poster"]}  />
+<p>Title : <%= @movie.title %> </p>
+<p>Year:  <%= @movie.year %> </p>
+<p> <%= @movie.plot %> </p>                         
+<p>Released : <%= @movie.released %> </p>
+<p>Runtime : <%= @movie.runtime %> </p>
+<p>Genre : <%= @movie.genre %></p>
+<p>Director : <%= @movie.director %></p>
+<p>Writter : <%= @movie.writer %></p>
+<p>Actors : <%= @movie.actors %></p>
+<p>Language : <%= @movie.language %></p>
+<p>Country : <%= @movie.country %> </p>
+<p>Awards : <%= @movie.awards %> </p>
+
+<h3> Reviews </h3>
+<% if @movie.reviews.size > 0 %>
+    <% @movie.reviews.each do |review| %>
+    <p> <%= review.comment %> by <%= review.user.username %> </p>
+    <% end %>
+<% else %>
+    <p> There are no reviews yet </p>
+<% end %>
+
+<% if !current_user.reviewed?(@movie) %>
+    <form id="rating-form" action="/reviews" method="POST">
+      <input type="hidden" name="authenticity_token" value=${window._token} />
+      <input type="hidden" name="imdbid" value=${data["imdbID"]} />
+      <textarea name="review[comment]" class="form-control" placeholder="Your movie review"></textarea> 
+      <br/>
+      <input type="submit" class="btn btn-success pull-left" />
+    </form>
+<% end %>
