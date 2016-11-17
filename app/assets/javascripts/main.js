@@ -41,14 +41,18 @@ function displayMovie(data){
           htmlString += `<img style="width:100px" src=${data["Poster"] == "N/A" ? "http://www.reelviews.net/resources/img/default_poster.jpg" : data["Poster"]}  />
                          <p>Title :  ${data["Title"]}</p>
                          <p>Year:  ${data["Year"]}</p>
-                         <p>Rated :  ${data["Rated"]}</p>
+                         <p> ${data["Plot"]}</p>                         
                          <p>Released : ${data["Released"]}</p>
                          <p>Runtime : ${data["Runtime"]}</p>
                          <p>Genre : ${data["Genre"]}</p>
                          <p>Director : ${data["Director"]}</p>
-                         <p>Writter : ${data["Writter"]}</p>
-                         <p>Actors : ${data["Actor"]}</p>
-                         <p>Plot : ${data["Plot"]}</p>`;
+                         <p>Writter : ${data["Writer"]}</p>
+                         <p>Actors : ${data["Actors"]}</p>
+                         <p>Plot : ${data["Language"]}</p>
+                         <p>Country : ${data["Country"]}</p>
+                         <p>Awards : ${data["Awards"]}</p>`
+
+                         
       container.append(htmlString);
 }
 //-------------------------  
