@@ -26,6 +26,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 #for carrierwave
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+#for omdb api
+gem 'omdb-api'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

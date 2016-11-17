@@ -48,11 +48,17 @@ function displayMovie(data){
                          <p>Director : ${data["Director"]}</p>
                          <p>Writter : ${data["Writer"]}</p>
                          <p>Actors : ${data["Actors"]}</p>
-                         <p>Plot : ${data["Language"]}</p>
+                         <p>Language : ${data["Language"]}</p>
                          <p>Country : ${data["Country"]}</p>
-                         <p>Awards : ${data["Awards"]}</p>`
-
+                         <p>Awards : ${data["Awards"]}</p>
                          
+                         <form id="rating-form" action="/reviews" method="POST">
+                          <input type="hidden" name="authenticity_token" value=${window._token} />
+                          <input type="hidden" name="imdbid" value=${data["imdbID"]} />
+                          <textarea name= "review[comment]" class="form-control" placeholder="Your movie review"/>
+                          <br />
+                          <input type="submit" class="btn btn-success pull-right" />
+                        </form>`
       container.append(htmlString);
 }
 //-------------------------  
