@@ -1,5 +1,11 @@
 <div id="nav">
     <a class="logo" href="/"> Filmster </a>
+    <% if user_signed_in? %>
+    <%= link_to 'Log Out', destroy_user_session_path, method: 'delete', class: 'nav_links pull-right' %>
     <%= link_to 'Edit Profile', edit_user_registration_path, method: 'get', class: 'nav_links pull-right' %> 
+    <% else %>
+    <%= link_to 'Sign Up', new_user_registration_path, class: 'nav_links pull-right' %>
+    <%= link_to 'Sign In', new_user_session_path, class: 'nav_links pull-right' %>
+    <% end %>
 </div>
 

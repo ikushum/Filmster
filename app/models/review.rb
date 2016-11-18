@@ -4,10 +4,6 @@ class Review < ActiveRecord::Base
   
   validates :user, :movie, :comment, presence: true  
   
-  def user_username
-    user.username
-  end 
-  
   delegate :username, to: :user, prefix: true 
 
 end
