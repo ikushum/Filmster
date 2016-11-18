@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   def reviewed?(movie)
       reviewed=false
       movie.reviews.each do |review|
-        reviewed=true if username==review.user.username
+        reviewed=true if username==review.user_username
       end 
       return reviewed
   end 
