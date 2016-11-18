@@ -53,3 +53,22 @@ a:hover{
     text-decoration:none;
     color:#cecece;
 }
+
+#movies{
+    width:auto;
+    margin:30px auto;
+}
+
+.grid{
+}
+
+.grid-item { 
+    width: 200px; 
+}
+
+.grid-item--width2 { 
+    width: 220px;
+    display:inline-block;
+    vertical-align:top;
+    margin-top:20px;
+}

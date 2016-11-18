@@ -75,9 +75,11 @@ function displayMovies(data){
       } 
       else {
         data["Search"].forEach(function(movie){
-        htmlString += `<img src=${movie["Poster"] == "N/A" ? "http://www.reelviews.net/resources/img/default_poster.jpg" : movie["Poster"]} data-id="${movie['imdbID']}" />
-                         <p>${movie["Title"]}</p>
-                         <p>${movie["Year"]}</p>`;
+        htmlString += `<div class="grid-item--width2">
+                        <img src=${movie["Poster"] == "N/A" ? "http://www.reelviews.net/resources/img/default_poster.jpg" : movie["Poster"]} data-id="${movie['imdbID']}" class="grid-item" />
+                         <p class="grid-item">${movie["Title"]}</p>
+                         <p class="grid-item">${movie["Year"]}</p>
+                         </div>`;
         });
       }
       container.append(htmlString);
