@@ -1,0 +1,33 @@
+<%= image_tag @user.avatar, class: 'prof-pic-lg' %>
+<h1 class="text-center"><%= @user.username %></h1>
+<p class="text-center lead"><%= @user.introduction %></p>
+
+<ul class="user-stats">
+  <li>
+    <div class="number-label">Reviews</div>
+    <div class="number-value"><%= @user.reviews.count %></div>
+  </li> 
+</ul>
+
+<div id="movie">
+    <script type="text/javascript">
+        $.ajax({
+          dataType: "json",
+          url: "<%= user_path(@user.id) %>.json",
+        })
+        .done(function(data){
+            console.log(data)
+            let container = $("#movie")
+            let htmlString = "";
+            container.empty();
+            data["reviews"].forEach(function(review){
+                    htmlString += `<div class="grid-item--width2">
+                                     <a href="/movies/${review["movie"].id}"> <img src=${review["movie"].poster == "N/A" ? "http://www.reelviews.net/resources/img/default_poster.jpg" : review["movie"].poster} class="grid-item" /></a>
+                                     <p class="grid-item">${review["movie"].title}</p>
+                                     <p class="grid-item">${review["comment"]}</p>
+                                    </div>`;
+            });
+            container.append(htmlString);
+        });
+    </script>
+</div>
