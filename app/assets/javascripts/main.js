@@ -5,11 +5,10 @@ $(function(){
   form.submit(function(e){
     e.preventDefault();
     $.ajax({
-      url: 'http://www.omdbapi.com/?',
+      url: 'https://www.omdbapi.com/?',
       data: form.serialize()
     })
     .done(function(data){
-      console.log(data)
       displayMovies(data);
     });
   });
@@ -19,7 +18,7 @@ $(function(){
       e.preventDefault();
       let id = $(e.target).data('id');
       $.ajax({
-          url: `http://www.omdbapi.com/?`,
+          url: `https://www.omdbapi.com/?`,
           data: {i: id}
       })
         .done(function(data){
