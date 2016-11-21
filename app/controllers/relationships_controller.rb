@@ -3,17 +3,17 @@ class RelationshipsController < ApplicationController
   before_action :check_user
 
   def create
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     current_user.follow(@user)
   end
   
   def destroy
     current_user.unfollow(@user)
-  end
+ end
   
   private
   def check_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     if current_user == @user 
         flash[:alert] = "Woops! It seems there was an error."
         redirect_to user_path(@user.id)
