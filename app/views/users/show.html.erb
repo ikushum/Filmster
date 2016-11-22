@@ -8,15 +8,17 @@
 
 <div id="movie">
     <script type="text/javascript">
+        let userData = {};
         $.ajax({
           dataType: "json",
           url: "<%= user_path(@user.id) %>.json",
         })
         .done(function(data){
-            console.log(data)
+            userData = data;
             let container = $("#movie")
             let htmlString = "";
             container.empty();
+            
             data["reviews"].forEach(function(review){
                     htmlString += `<div class="grid-item--width2">
                                      <a href="/movies/${review["movie"].id}"> <img src=${review["movie"].poster == "N/A" ? "http://www.reelviews.net/resources/img/default_poster.jpg" : review["movie"].poster} class="grid-item" /></a>
@@ -25,6 +27,55 @@
                                     </div>`;
             });
             container.append(htmlString);
+            
+            $('#user-reviews').on('click', function(e){  
+                container.empty();
+                let htmlString = "";
+                data["reviews"].forEach(function(review){
+                        htmlString += `<div class="grid-item--width2">
+                                         <a href="/movies/${review["movie"].id}"> <img src=${review["movie"].poster == "N/A" ? "http://www.reelviews.net/resources/img/default_poster.jpg" : review["movie"].poster} class="grid-item" /></a>
+                                         <p class="grid-item">${review["movie"].title}</p>
+                                         <p class="grid-item">${review["comment"]}</p>
+                                        </div>`;
+                });
+                container.append(htmlString);
+            });
+            
+            $('#user-following').on('click', function(e){  
+                container.empty();
+                container.append(getFollowing(userData));
+            });
+            
+            $('#user-followers').on('click', function(e){  
+                container.empty();
+                container.append(getFollowers(userData));
+            });
+        
         });
+        
+        function getFollowing(userData){
+            let following="";
+            userData.following_relationships.forEach(function(user){
+                following+=` <div id="users">
+                                <img class="avatar-list" src=${user["user"].avatar_url == null ? "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSBvtdWpmIlo_3ZBP59sJCfDqy4JGpuSLQbMNXVGzTRxcuQtKE0" : user["user"].avatar_url} >
+                                <p class="username"> ${user["user"].username} </p>
+                                <p> ${user["user"].introduction == null ? "no introduction" : user["user"].introduction}  </p>
+                            </div> `;
+            });
+          return following;
+        }
+        
+        function getFollowers(userData){
+            let followers="";
+            userData.followed_relationships.forEach(function(user){
+                followers+=` <div id="users">
+                                <img class="avatar-list" src=${user["user"].avatar_url == null ? "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSBvtdWpmIlo_3ZBP59sJCfDqy4JGpuSLQbMNXVGzTRxcuQtKE0" : user["user"].avatar_url} >
+                                <p class="username"> ${user["user"].username} </p>
+                                <p> ${user["user"].introduction == null ? "no introduction" : user["user"].introduction}  </p>
+                            </div> `;
+            });
+          return followers;
+        }
+        
     </script>
 </div>
