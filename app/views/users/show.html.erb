@@ -1,4 +1,4 @@
-<%= image_tag @user.avatar, class: 'prof-pic-lg' %>
+<%= image_tag @user.avatar.presence ? @user.avatar : 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSBvtdWpmIlo_3ZBP59sJCfDqy4JGpuSLQbMNXVGzTRxcuQtKE0' , class: 'prof-pic-lg' %>
 <h1 class="text-center"><%= @user.username %></h1>
 <p class="text-center lead"><%= @user.introduction %></p>
 
