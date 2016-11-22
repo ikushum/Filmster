@@ -58,7 +58,7 @@
             userData.following_relationships.forEach(function(user){
                 following+=` <div id="users">
                                 <img class="avatar-list" src=${user["user"].avatar_url == null ? "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSBvtdWpmIlo_3ZBP59sJCfDqy4JGpuSLQbMNXVGzTRxcuQtKE0" : user["user"].avatar_url} >
-                                <p class="username"> ${user["user"].username} </p>
+                                <a href="/users/${user["user"].id}"> <p class="username"> ${user["user"].username} </p> </a>
                                 <p> ${user["user"].introduction == null ? "no introduction" : user["user"].introduction}  </p>
                             </div> `;
             });
@@ -70,7 +70,7 @@
             userData.followed_relationships.forEach(function(user){
                 followers+=` <div id="users">
                                 <img class="avatar-list" src=${user["user"].avatar_url == null ? "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSBvtdWpmIlo_3ZBP59sJCfDqy4JGpuSLQbMNXVGzTRxcuQtKE0" : user["user"].avatar_url} >
-                                <p class="username"> ${user["user"].username} </p>
+                                <a href="/users/${user["user"].id}"> <p class="username"> ${user["user"].username} </p> </a>
                                 <p> ${user["user"].introduction == null ? "no introduction" : user["user"].introduction}  </p>
                             </div> `;
             });
