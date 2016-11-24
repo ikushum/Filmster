@@ -9,11 +9,15 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   has_many :reviews
+  
   has_many :following_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed_relationships, class_name:  "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_users, through: :following_relationships, source: :followed
   has_many :followed_users, through: :followed_relationships, source: :follower
-  
+ 
+  has_many :voting_relationships, class_name: "Vote", foreign_key: "voter_id", dependent: :destroy
+  has_many :voting_reviews, through: :voting_relationships, source: :votable
+
   def reviewed?(movie)
       reviewed=false
       movie.reviews.each do |review|
