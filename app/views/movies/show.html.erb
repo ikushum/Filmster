@@ -17,7 +17,11 @@
     <% @movie.reviews.each do |review| %>
     <p> <%= review.comment %> by <%= review.user_username %> </p>
     <%= review.voted_relationships.count %> votes 
-    <%= link_to "Vote this Review", review_votes_path(review.id), method: 'post' %>    
+    <% if current_user.voted?(review) %>
+    <%= link_to "DownVote this Review", review_vote_path(review.id,review.id), method: 'delete' %> 
+    <% else %>
+    <%= link_to "Vote this Review", review_votes_path(review.id), method: 'post' %> 
+    <% end %>
     <% end %>
 <% else %>
     <p> There are no reviews yet </p>

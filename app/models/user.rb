@@ -22,20 +22,28 @@ class User < ActiveRecord::Base
     return true if reviews.exists?(movie_id: movie.id)
   end 
   
+  def following?(user)
+     return true if following_relationships.exists?(followed_id: user.id)
+  end 
+  
+  def voted?(review)
+    return true if voting_relationships.exists?(votable_id: review.id)
+  end 
+  
   def follow(other_user)  
     following_relationships.create(followed_id: other_user.id)
+  end
+  
+  def unfollow(other_user)
+    following_relationships.find_by(followed_id: other_user.id).destroy
   end
   
   def vote(review)
     voting_relationships.create(votable_id: review.id)
   end 
   
-  def unfollow(other_user)
-    following_relationships.find_by(followed_id: other_user.id).destroy
-  end
-  
-  def following?(user)
-     return true if following_relationships.exists?(followed_id: user.id)
+  def downvote(review)
+    voting_relationships.find_by(votable_id: review.id).destroy
   end 
 
 end
