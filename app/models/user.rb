@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     following_relationships.create(followed_id: other_user.id)
   end
   
+  def vote(review)
+    voting_relationships.create(votable_id: review.id)
+  end 
+  
   def unfollow(other_user)
     following_relationships.find_by(followed_id: other_user.id).destroy
   end

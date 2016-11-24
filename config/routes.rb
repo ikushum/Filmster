@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'staticpages#index'
-  resources :reviews
+  resources :reviews do 
+      resources :votes
+  end 
   resources :movies
   resources :users, only: :show do
     resources :relationships
