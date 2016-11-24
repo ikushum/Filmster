@@ -19,11 +19,7 @@ class User < ActiveRecord::Base
   has_many :voting_reviews, through: :voting_relationships, source: :votable
 
   def reviewed?(movie)
-      reviewed=false
-      movie.reviews.each do |review|
-        reviewed=true if username==review.user_username
-      end 
-      return reviewed
+    return true if reviews.exists?(movie_id: movie.id)
   end 
   
   def follow(other_user)  
@@ -35,11 +31,7 @@ class User < ActiveRecord::Base
   end
   
   def following?(user)
-    following=false
-    following_relationships.each do |id|
-      following=true if user.id==id.followed_id
-    end 
-    return following
+     return true if following_relationships.exists?(followed_id: user.id)
   end 
 
 end
