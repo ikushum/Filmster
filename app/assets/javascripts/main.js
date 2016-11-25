@@ -22,7 +22,6 @@ $(function(){
           data: {i: id}
       })
         .done(function(data){
-          console.log(data)
          displayMovie(data)
       });
   });

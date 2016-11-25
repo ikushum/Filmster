@@ -1,8 +1,35 @@
+<button type="button" data-toggle="modal" data-target="#myModal">
 <%= review.voted_relationships.count %> votes 
+</button>
+
 <% if current_user.voted?(review) %>
-<%= link_to "DownVote this Review", review_vote_path(review.id,review.id), method: 'delete', remote: true %> 
+<%= link_to "DownVote", review_vote_path(review.id,review.id), method: 'delete', class: 'btn btn-primary btn-sm', remote: true %> 
 <% else %>
-<%= link_to "Vote this Review", review_votes_path(review.id), method: 'post', remote: true %> 
+<%= link_to "Upvote", review_votes_path(review.id), method: 'post', class: 'btn btn-primary btn-sm', remote: true %> 
 <% end %>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Votes</h4>
+      </div>
+      <div class="modal-body">
+         <% review.voted_users.each do |user| %>
+              <div id="users">
+                <img class="avatar-list" src="<%= user.avatar.nil? ? 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSBvtdWpmIlo_3ZBP59sJCfDqy4JGpuSLQbMNXVGzTRxcuQtKE0' : user.avatar %>" >
+                <a href="<%= user_path(user.id) %>" ><p class="username"> <%= user.username %> </p> </a>
+                <p>  <%= user.introduction.nil? ? "no introduction" : user.introduction %> </p>
+              </div>
+         <% end %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
         
         
