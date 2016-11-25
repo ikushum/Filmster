@@ -1,0 +1,8 @@
+<%= review.voted_relationships.count %> votes 
+<% if current_user.voted?(review) %>
+<%= link_to "DownVote this Review", review_vote_path(review.id,review.id), method: 'delete', remote: true %> 
+<% else %>
+<%= link_to "Vote this Review", review_votes_path(review.id), method: 'post', remote: true %> 
+<% end %>
+        
+        
